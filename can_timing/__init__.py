@@ -44,6 +44,14 @@ class _ESP32Const(_TimingConst):
     fsys = 80000000
 
 
+class _STM32(_TimingConst):
+    tseg1_min = 1
+    tseg2_min = 1
+    brp_min = 2
+    brp_max = 1024
+    fsys = 16000000
+
+
 class _MSCanConst(_TimingConst):
     pass
 
@@ -57,96 +65,173 @@ class _FlexCanConst(_TimingConst):
     brp_max = 256
 
 
-class TimingConstants(object):
+class _TimingConstants(object):
     """
     Constants used to calculate the timing registers
     """
 
-    class MCP251x8(_MCP251xConst):
-        fsys = 8000000
+    @property
+    def MCP251x8(self):
+        instance = _MCP251xConst()
+        instance.fsys = 8000000
+        return instance
 
-    class MCP251x16(_MCP251xConst):
-        pass
+    @property
+    def MCP251x16(self):
+        instance = _MCP251xConst()
+        return instance
 
-    class MPC251x32(_MCP251xConst):
-        fsys = 32000000
+    @property
+    def MPC251x32(self):
+        instance = _MCP251xConst()
+        instance.fsys = 32000000
+        return instance
 
-    class MSCan32(_MSCanConst):
-        fsys = 32000000
+    @property
+    def MSCan32(self):
+        instance = _MSCanConst()
+        instance.fsys = 32000000
+        return instance
 
-    class MSCan33(_MSCanConst):
-        fsys = 33000000
+    @property
+    def MSCan33(self):
+        instance = _MSCanConst()
+        instance.fsys = 33000000
+        return instance
 
-    class MSCan333(_MSCanConst):
-        fsys = 33300000
+    @property
+    def MSCan333(self):
+        instance = _MSCanConst()
+        instance.fsys = 33300000
+        return instance
 
-    class MSCan33333333(_MSCanConst):
-        fsys = 33333333
+    @property
+    def MSCan33333333(self):
+        instance = _MSCanConst()
+        instance.fsys = 33333333
+        return instance
 
-    class MSCanMPC51211(_MSCanConst):
-        fsys = 66660000
+    @property
+    def MSCanMPC51211(self):
+        instance = _MSCanConst()
+        instance.fsys = 66660000
+        return instance
 
-    class MSCanMPC51212(_MSCanConst):
-        fsys = 66666666
+    @property
+    def MSCanMPC51212(self):
+        instance = _MSCanConst()
+        instance.fsys = 66666666
+        return instance
 
-    class AT91Ronetix(_AT91Const):
-        fsys = 99532800
+    @property
+    def AT91Ronetix(self):
+        instance = _AT91Const()
+        instance.fsys = 99532800
+        return instance
 
-    class AT91100(_AT91Const):
-        fsys = 100000000
+    @property
+    def AT91100(self):
+        instance = _AT91Const()
+        instance.fsys = 100000000
+        return instance
 
-    class FlexCanMX28(_FlexCanConst):
-        fsys = 24000000
+    @property
+    def FlexCanMX28(self):
+        instance = _FlexCanConst()
+        instance.fsys = 24000000
+        return instance
 
-    class FlexCanMX6(_FlexCanConst):
-        fsys = 30000000
+    @property
+    def FlexCanMX6(self):
+        instance = _FlexCanConst()
+        instance.fsys = 30000000
+        return instance
 
-    class FlexCan49(_FlexCanConst):
-        fsys = 49875000
+    @property
+    def FlexCan49(self):
+        instance = _FlexCanConst()
+        instance.fsys = 49875000
+        return instance
 
-    class FlexCan66(_FlexCanConst):
-        fsys = 66000000
+    @property
+    def FlexCan66(self):
+        instance = _FlexCanConst()
+        instance.fsys = 66000000
+        return instance
 
-    class FlexCan665(_FlexCanConst):
-        fsys = 66500000
+    @property
+    def FlexCan665(self):
+        instance = _FlexCanConst()
+        instance.fsys = 66500000
+        return instance
 
-    class FlexCan666(_FlexCanConst):
-        fsys = 66666666
+    @property
+    def FlexCan666(self):
+        instance = _FlexCanConst()
+        instance.fsys = 66666666
+        return instance
 
-    class FlexCanVYBRID(_FlexCanConst):
-        fsys = 83368421
+    @property
+    def FlexCanVYBRID(self):
+        instance = _FlexCanConst()
+        instance.fsys = 83368421
+        return instance
 
-    class SJA1000(_TimingConst):
-        tseg1_min = 1
-        tseg2_min = 1
+    @property
+    def SJA1000(self):
+        instance = _TimingConst()
+        instance.tseg1_min = 1
+        instance.tseg2_min = 1
+        return instance
 
-    class TIHecc(_TimingConst):
-        tseg1_min = 1
-        tseg2_min = 1
-        brp_max = 256
-        fsys = 26000000
+    @property
+    def TIHecc(self):
+        instance = _TimingConst()
+        instance.tseg1_min = 1
+        instance.tseg2_min = 1
+        instance.brp_max = 256
+        instance.fsys = 26000000
+        return instance
 
-    class RCARCan(_TimingConst):
-        brp_max = 1024
-        fsys = 130000000
+    @property
+    def RCARCan(self):
+        instance = _TimingConst()
+        instance.brp_max = 1024
+        instance.fsys = 130000000
+        return instance
 
-    class ESP32V1(_ESP32Const):
-        pass
+    @property
+    def ESP32V1(self):
+        instance = _ESP32Const()
+        return instance
 
-    class ESP32V2(_ESP32Const):
-        brp_min = 132
-        brp_max = 256
-        brp_inc = 4
-        additional_timings = (_ESP32Const,)
+    @property
+    def ESP32V2(self):
+        instance = _ESP32Const()
+        instance.brp_min = 132
+        instance.brp_max = 256
+        instance.brp_inc = 4
+        instance.additional_timings = (_ESP32Const,)
+        return instance
 
-    class ESP32V3(ESP32V2):
-        pass
+    @property
+    def ESP32V3(self):
+        return self.ESP32V2
 
-    class ESP32V4(ESP32V2):
-        pass
+    @property
+    def ESP32V4(self):
+        return self.ESP32V2
 
-    class ESP32S2(_ESP32Const):
-        brp_max = 32768
+    @property
+    def ESP32S2(self):
+        instance = _ESP32Const()
+        instance.brp_max = 32768
+        return instance
+
+    @property
+    def STM32(self):
+        instance = _STM32()
+        return instance
 
 
 def _get_cia_sample_point(bitrate):
@@ -202,7 +287,7 @@ class Bitrate(object):
     taken into considertion and the specification does allow for "wiggle room".
     """
 
-    TimingConstants = TimingConstants
+    TimingConstants = _TimingConstants()
 
     sync_seg = 1
 
@@ -276,11 +361,74 @@ class Bitrate(object):
         self._tseg2 = 0
         self._fsys = 0
         self._sjw_max = 0
+        self._timing_constant = None
 
         if number_of_samples not in (1, 3):
             raise ValueError("number_of_samples must be 1 or 3")
 
         self._number_of_samples = number_of_samples
+
+    def __iter__(self):
+        if isinstance(self._timing_constant, (_ESP32Const, _STM32)):
+            for item in ('bitrate', 'brp', 'sjw', 'tseg1', 'tseg2'):
+                yield item
+
+            # is_cia_sample_point
+            # bus_length
+            # transceiver_delay
+            # nominal_sample_point
+            # sample_point
+            # sample_point_error
+            # nominal_bitrate
+            # bitrate
+            # bitrate_error
+            # tq
+            # btq
+            # prop_delay
+            # prop_seg
+            # phase_seg1
+            # phase_seg2
+            # tseg1
+            # tseg2
+            # nbt
+            # brp
+            # oscillator_tolerance
+            # sjw
+            # rjw
+            # number_of_samples
+            # fsys
+            # btr0
+            # btr1
+            # can0bt
+            # canbr
+            # canctrl
+            # cnf1
+            # cnf2
+            # cnf3
+            # canbtc
+            # cxconr
+            # cibcr
+
+    def keys(self):
+        return self.__iter__()
+
+    def values(self):
+        raise NotImplementedError
+
+    def __setitem__(self, key, value):
+        raise NotImplementedError
+
+    def __getitem__(self, item):
+        if (
+            item == 'bitrate' and
+            isinstance(self._timing_constant, (_ESP32Const, _STM32))
+        ):
+            return 0
+
+        try:
+            return getattr(self, item)
+        except AttributeError:
+            raise KeyError(item)
 
     @property
     def is_cia_sample_point(self) -> bool:
@@ -293,6 +441,40 @@ class Bitrate(object):
         """
         cia_sample_point = _get_cia_sample_point(self.bitrate)
         return self.sample_point == cia_sample_point
+
+    @staticmethod
+    def get_bitrate(
+        timing_const: _TimingConst,
+        bitrate,
+        bitrate_tolerance=0.0,
+        sample_point=None,
+        sample_point_tolerance=0.0,
+        number_of_samples=1,
+        bus_length=1.0,
+        transceiver_delay=150
+    ):
+        b_rate = Bitrate(
+            bitrate,
+            bitrate_tolerance,
+            sample_point,
+            sample_point_tolerance,
+            number_of_samples,
+            bus_length,
+            transceiver_delay
+        )
+        found = None
+
+        for brte in b_rate.get_bitrates(timing_const):
+            if found is None:
+                found = brte
+
+            elif (
+                brte.bitrate_error < found.bitrate_error and
+                brte.sample_point_error < found.sample_point_error
+            ):
+                found = brte
+
+        return found
 
     @micropython.native
     def get_bitrates(
@@ -319,47 +501,84 @@ class Bitrate(object):
 
         bt = 1.0 / float(nominal_bitrate)
 
+        total_iter_count = 0
+
         for brp in range(brp_min, brp_max + 1, brp_inc):
             fcan = fsys / float(brp)
             tq = 1.0 / fcan
             btq = bt / tq
             btq_rounded = int(round(btq))
 
-            for tseg1 in range(tseg1_min,  tseg1_max + 1):
-                tseg2 = btq_rounded - (tseg1 + 1)
+            if btq_rounded == 0:
+                continue
 
-                if tseg1 < tseg2 or tseg2 > tseg2_max or tseg2 < tseg2_min:
-                    continue
+            err = -(btq / btq_rounded - 1)
+            err = round(err * 1e4) / 1e4
 
-                err = -(btq / btq_rounded - 1)
-                err = round(err * 1e4) / 1e4
+            bitrate = int(round(nominal_bitrate * (1 - err)))
+            br_err = (abs(bitrate - nominal_bitrate) / nominal_bitrate) * 100
+
+            if br_err > bitrate_tolerance:
+                continue
+
+            tseg1 = int(float(btq_rounded) * (float(nominal_sample_point) / 100.0)) - 1
+            tseg2 = btq_rounded - (tseg1 + 1)
+
+            sample_point = round((tseg1 + 1) / btq_rounded * 1e4) / 100
+            sp_err = (abs(sample_point - nominal_sample_point) / nominal_sample_point) * 100
+
+            while (
+                sp_err <= sample_point_tolerance and
+                tseg1 + 1 >= tseg2 and
+                tseg1_max >= tseg1 >= tseg1_min and
+                tseg2_max >= tseg2 >= tseg2_min
+            ):
+                tseg1 -= 1
+                tseg2 += 1
 
                 sample_point = round((tseg1 + 1) / btq_rounded * 1e4) / 100
-                bitrate = int(round(nominal_bitrate * (1 - err)))
-
                 sp_err = (abs(sample_point - nominal_sample_point) / nominal_sample_point) * 100
-                br_err = (abs(bitrate - nominal_bitrate) / nominal_bitrate) * 100
 
-                if br_err <= bitrate_tolerance and sp_err <= sample_point_tolerance:
-                    match = Bitrate(
-                        bitrate=nominal_bitrate,
-                        sample_point=nominal_sample_point,
-                        number_of_samples=self._number_of_samples,
-                        bus_length=self._bus_length,
-                        transceiver_delay=self._transceiver_delay,
-                    )
+            tseg1 += 1
+            tseg2 -= 1
+            sample_point = round((tseg1 + 1) / btq_rounded * 1e4) / 100
+            sp_err = (abs(sample_point - nominal_sample_point) / nominal_sample_point) * 100
 
-                    match._bitrate = bitrate
-                    match._sample_point = sample_point
-                    match._bitrate_error = br_err
-                    match._sample_point_error = sp_err
-                    match._brp = brp
-                    match._tseg1 = tseg1
-                    match._tseg2 = tseg2
-                    match._fsys = fsys
-                    match._sjw_max = sjw_max
+            while (
+                sp_err <= sample_point_tolerance and
+                tseg1 + 1 >= tseg2 and
+                tseg1_max >= tseg1 >= tseg1_min and
+                tseg2_max >= tseg2 >= tseg2_min
+            ):
+                if tseg1 < tseg2 or tseg2 > tseg2_max or tseg2 < tseg2_min:
+                    break
 
-                    results += [match]
+                match = Bitrate(
+                    bitrate=nominal_bitrate,
+                    sample_point=nominal_sample_point,
+                    number_of_samples=self._number_of_samples,
+                    bus_length=self._bus_length,
+                    transceiver_delay=self._transceiver_delay,
+                )
+
+                match._bitrate = bitrate
+                match._sample_point = sample_point
+                match._bitrate_error = br_err
+                match._sample_point_error = sp_err
+                match._brp = brp
+                match._tseg1 = tseg1
+                match._tseg2 = tseg2
+                match._fsys = fsys
+                match._sjw_max = sjw_max
+                match._timing_constant = timing_const
+
+                results += [match]
+
+                tseg1 += 1
+                tseg2 -= 1
+
+                sample_point = round((tseg1 + 1) / btq_rounded * 1e4) / 100
+                sp_err = (abs(sample_point - nominal_sample_point) / nominal_sample_point) * 100
 
         for t_const in timing_const.additional_timings:
             results += self.get_bitrates(
@@ -856,28 +1075,28 @@ class Bitrate(object):
         return "\n".join(res)
 
 
-if __name__ is '__main__':
+if __name__ == '__main__':
+    import time
 
-    for key in sorted(list(TimingConstants.__dict__.keys())):
-        if key.startswith('_'):
-            continue
+    def dummy_func(**kwargs):
+        print(kwargs)
 
-        tconst = TimingConstants.__dict__[key]
-        print(tconst.__name__)
-        print('******************************')
-        print()
 
-        brate = Bitrate(
-            bitrate=100000,
-            bitrate_tolerance=0.0,
-            sample_point_tolerance=2.0,
-            bus_length=5,
-            transceiver_delay=200,
-        )
+    count = 0
 
-        for item in brate.get_bitrates(tconst):
-            print(item)
-            print()
+    start = time.time() * 1000
 
-        print('******************************')
-        print()
+    br = Bitrate(bitrate=500000, bitrate_tolerance=0.0, sample_point=75.0, sample_point_tolerance=99.9)
+    for b_item in br.get_bitrates(br.TimingConstants.ESP32S2):
+        # count += 1
+        # print(b_item)
+        # dummy_func(**b_item)
+        # print()
+        pass
+
+    stop = time.time() * 1000
+    print(stop - start)
+
+    print()
+    print(count)
+
